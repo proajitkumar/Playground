@@ -1,12 +1,18 @@
-import {View, Text} from 'react-native';
+import {StyleSheet} from 'react-native';
 import React from 'react';
+import RootNavigation from './src/navigation/RootNavigation';
 
 const App = () => {
   return (
-    <View>
-      <Text>App</Text>
-    </View>
+    <>
+      <RootNavigation />
+    </>
   );
 };
+
+const styles = StyleSheet.create({
+  flex: 1,
+  backgroundColor: 'white',
+});
 
 export default App;
