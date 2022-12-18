@@ -30,6 +30,7 @@ public class MainApplication extends Application implements ReactApplication {
           // packages.add(new MyReactNativePackage());
             packages.add(new VideoViewPackage());
             packages.add(new TextInputPackage());
+            packages.add(new MyAppPackage());
           return packages;
         }
 
