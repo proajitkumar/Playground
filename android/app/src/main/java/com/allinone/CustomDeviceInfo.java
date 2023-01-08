@@ -34,7 +34,8 @@ public class CustomDeviceInfo extends ReactContextBaseJavaModule {
         try {
             String input = "Java Code Geeks - Java Examples";
 //            Settings.Secure.getString(this.getContentResolver(),Settings.Secure.ANDROID_ID);
-            byte bytes[] =getDeviceId().getBytes();
+//            byte bytes[] =getDeviceId().getBytes();
+            byte bytes[] =input.getBytes();
             Checksum checksum = new CRC32();
             checksum.update(bytes, 0, bytes.length);
             long checksumValue = checksum.getValue();
