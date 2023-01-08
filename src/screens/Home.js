@@ -6,8 +6,8 @@ const {GetDeviceInfo} = NativeModules;
 const input = 'Java Code Geeks - Java Examples';
 const Home = () => {
   useEffect(() => {
-    let crcVal = CRC32.str(input);
-    console.log({crcVal});
+    // let crcVal = CRC32.str(input);
+    // console.log({crcVal});
   }, []);
 
   const onPress = () => {
