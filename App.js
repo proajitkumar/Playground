@@ -1,4 +1,4 @@
-import {StyleSheet} from 'react-native';
+import {} from 'react-native';
 import React from 'react';
 import RootNavigation from './src/navigation/RootNavigation';
 
@@ -9,10 +9,5 @@ const App = () => {
     </>
   );
 };
-
-const styles = StyleSheet.create({
-  flex: 1,
-  backgroundColor: 'white',
-});
 
 export default App;
