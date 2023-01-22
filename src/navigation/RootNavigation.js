@@ -2,41 +2,62 @@ import {} from 'react-native';
 import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createSharedElementStackNavigator} from 'react-navigation-shared-element';
-import {createStackNavigator, TransitionPresets} from '@react-navigation/stack';
+import {TransitionPresets} from '@react-navigation/stack';
 import HomeTab from './HomeTab';
 import TopTabScreen from '../screens/navigationConfig/TopTabScreen';
 import MemberList from '../screens/sharedElement/MemberList';
 import MemberDetails from '../screens/sharedElement/MemberDetails';
+import DigihealthOCR from '../screens/ocr';
+import Home from '../screens/Home';
+import BottomSheet from '../screens/bottomSheet/BottomSheet';
 
 const Stack = createSharedElementStackNavigator();
 
+export const screenList = [
+  {
+    name: 'MemberList',
+    component: MemberList,
+  },
+  {
+    name: 'MemberDetails',
+    component: MemberDetails,
+  },
+  {
+    name: 'BottomTab',
+    component: HomeTab,
+  },
+  {
+    name: 'TopTab',
+    component: TopTabScreen,
+  },
+  {
+    name: 'DigihealthOCR',
+    title: 'Digihealth OCR',
+    component: DigihealthOCR,
+  },
+  {
+    name: 'BottomSheet',
+    title: 'Bottom Sheet',
+    component: BottomSheet,
+  },
+];
+
 const RootNavigation = () => {
-  const options = {
-    headerBackTitleVisible: false,
-    cardStyleInterpolator: ({current: {progress}}) => {
-      return {
-        cardStyle: {
-          opacity: progress,
-        },
-      };
-    },
-  };
   return (
     <NavigationContainer>
       <Stack.Navigator
-      // screenOptions={{...TransitionPresets.SlideFromRightIOS}}
-      >
-        <Stack.Screen name="MemberList" component={MemberList} />
-        <Stack.Screen
-          name="MemberDetails"
-          component={MemberDetails}
-          options={() => options}
-        />
-        <Stack.Screen
-          name="TopTabScreen"
-          component={TopTabScreen}
-          options={{...TransitionPresets.SlideFromRightIOS}}
-        />
+        initialRouteName="Home"
+        screenOptions={{...TransitionPresets.SlideFromRightIOS}}>
+        <Stack.Screen name="Home" component={Home} />
+        {screenList?.map(screen => {
+          return (
+            <Stack.Screen
+              name={screen?.name}
+              component={screen?.component}
+              options={{...screen?.options, title: screen?.title}}
+            />
+          );
+        })}
       </Stack.Navigator>
     </NavigationContainer>
   );

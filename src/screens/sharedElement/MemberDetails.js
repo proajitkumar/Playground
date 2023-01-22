@@ -11,7 +11,7 @@ import React, {useEffect} from 'react';
 import {SharedElement} from 'react-navigation-shared-element';
 
 const MemberDetails = ({route}) => {
-  const {data} = route?.params;
+  const data = route?.params?.data;
   useEffect(() => {
     // console?.log({route: route?.params?.data});
   }, [route]);
