@@ -10,24 +10,24 @@ import MemberDetails from '../screens/sharedElement/MemberDetails';
 import DigihealthOCR from '../screens/ocr';
 import Home from '../screens/Home';
 import BottomSheet from '../screens/bottomSheet/BottomSheet';
+import ScreenForBottomSheet from '../screens/bottomSheet/ScreenForBottomSheet';
 
 const Stack = createSharedElementStackNavigator();
 
 export const screenList = [
   {
-    name: 'MemberList',
+    name: 'SharedElement',
+    title: 'Shared Element',
     component: MemberList,
   },
   {
-    name: 'MemberDetails',
-    component: MemberDetails,
-  },
-  {
     name: 'BottomTab',
+    title: 'Bottom Tab',
     component: HomeTab,
   },
   {
     name: 'TopTab',
+    title: 'Top Tab with Dynamic initial Params',
     component: TopTabScreen,
   },
   {
@@ -38,28 +38,37 @@ export const screenList = [
   {
     name: 'BottomSheet',
     title: 'Bottom Sheet',
-    component: BottomSheet,
+    component: ScreenForBottomSheet,
+    // options: {headerShown: false},
   },
 ];
 
 const RootNavigation = () => {
   return (
-    <NavigationContainer>
-      <Stack.Navigator
-        initialRouteName="Home"
-        screenOptions={{...TransitionPresets.SlideFromRightIOS}}>
-        <Stack.Screen name="Home" component={Home} />
-        {screenList?.map(screen => {
-          return (
-            <Stack.Screen
-              name={screen?.name}
-              component={screen?.component}
-              options={{...screen?.options, title: screen?.title}}
-            />
-          );
-        })}
-      </Stack.Navigator>
-    </NavigationContainer>
+    <>
+      <NavigationContainer>
+        <Stack.Navigator
+          initialRouteName="Home"
+          screenOptions={{
+            ...TransitionPresets.SlideFromRightIOS,
+            headerTitleAlign: 'center',
+          }}>
+          <Stack.Screen name="Home" component={Home} />
+          {screenList?.map(screen => {
+            return (
+              <React.Fragment key={screen?.name}>
+                <Stack.Screen
+                  name={screen?.name}
+                  component={screen?.component}
+                  options={{...screen?.options, title: screen?.title}}
+                />
+              </React.Fragment>
+            );
+          })}
+          <Stack.Screen name={'MemberDetails'} component={MemberDetails} />
+        </Stack.Navigator>
+      </NavigationContainer>
+    </>
   );
 };
 

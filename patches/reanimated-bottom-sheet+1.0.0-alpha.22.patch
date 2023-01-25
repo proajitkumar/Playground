@@ -1,0 +1,67 @@
+diff --git a/node_modules/reanimated-bottom-sheet/lib/commonjs/index.js b/node_modules/reanimated-bottom-sheet/lib/commonjs/index.js
+index 2d5787b..aeac59c 100644
+--- a/node_modules/reanimated-bottom-sheet/lib/commonjs/index.js
++++ b/node_modules/reanimated-bottom-sheet/lib/commonjs/index.js
+@@ -377,7 +377,7 @@ class BottomSheetBehavior extends React.Component {
+       style: {
+         height: '100%',
+         width: 0,
+-        position: 'absolute'
++        position: 'absolute',
+       },
+       onLayout: this.handleFullHeader
+     }), React.createElement(_reactNativeReanimated.default.View, {
+@@ -409,7 +409,7 @@ class BottomSheetBehavior extends React.Component {
+         height: this.state.initSnap - this.state.heightOfHeader,
+         overflow: this.props.overflow || 'hidden',
+         borderTopLeftRadius: borderRadius,
+-        borderTopRightRadius: borderRadius
++        borderTopRightRadius: borderRadius,
+       }
+     }, React.createElement(_reactNativeGestureHandler.PanGestureHandler, {
+       enabled: this.props.enabledGestureInteraction && this.props.enabledContentGestureInteraction,
+@@ -422,7 +422,7 @@ class BottomSheetBehavior extends React.Component {
+       ref: this.tapRef,
+       enabled: this.props.enabledGestureInteraction && this.props.enabledContentGestureInteraction && this.props.enabledContentTapInteraction,
+       onHandlerStateChange: this.handleTap,
+-      simultaneousHandlers: this.props.simultaneousHandlers
++      simultaneousHandlers: this.props.simultaneousHandlers,
+     }, React.createElement(_reactNativeReanimated.default.View, {
+       style: {
+         width: '100%',
+diff --git a/node_modules/reanimated-bottom-sheet/lib/module/index.js b/node_modules/reanimated-bottom-sheet/lib/module/index.js
+index 9f3044e..99c9df2 100644
+--- a/node_modules/reanimated-bottom-sheet/lib/module/index.js
++++ b/node_modules/reanimated-bottom-sheet/lib/module/index.js
+@@ -367,6 +367,11 @@ export default class BottomSheetBehavior extends React.Component {
+       style: {
+         width: '100%',
+         position: 'absolute',
++        backgroundColor: "white",
++        elevation: 46,
++        paddingTop: 10,
++        borderTopLeftRadius: borderRadius,
++        borderTopRightRadius: borderRadius,
+         zIndex: 100,
+         opacity: cond(this.height, 1, 0),
+         transform: [{
+@@ -384,7 +389,9 @@ export default class BottomSheetBehavior extends React.Component {
+       simultaneousHandlers: this.props.simultaneousHandlers
+     }, React.createElement(Animated.View, {
+       style: {
+-        zIndex: 101
++        zIndex: 101,
++        // paddingTop: 10,
++        // backgroundColor: "cyan"
+       },
+       onLayout: this.handleLayoutHeader
+     }, this.props.renderHeader && this.props.renderHeader())), React.createElement(View, {
+@@ -392,7 +399,7 @@ export default class BottomSheetBehavior extends React.Component {
+         height: this.state.initSnap - this.state.heightOfHeader,
+         overflow: this.props.overflow || 'hidden',
+         borderTopLeftRadius: borderRadius,
+-        borderTopRightRadius: borderRadius
++        borderTopRightRadius: borderRadius,
+       }
+     }, React.createElement(PanGestureHandler, {
+       enabled: this.props.enabledGestureInteraction && this.props.enabledContentGestureInteraction,

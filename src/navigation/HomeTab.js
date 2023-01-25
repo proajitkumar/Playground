@@ -19,7 +19,7 @@ const HomeTab = () => {
       <Tab.Screen
         name="PendingScreen"
         initialParams={{type: 'Pending'}}
-        component={Home}
+        component={Setting}
       />
       <Tab.Screen
         name="PaidScreen"
