@@ -11,6 +11,7 @@ import DigihealthOCR from '../screens/ocr';
 import Home from '../screens/Home';
 import BottomSheet from '../screens/bottomSheet/BottomSheet';
 import ScreenForBottomSheet from '../screens/bottomSheet/ScreenForBottomSheet';
+import BlurToolbar from '../screens/bottomSheet/BlurToolbar';
 
 const Stack = createSharedElementStackNavigator();
 
@@ -38,7 +39,7 @@ export const screenList = [
   {
     name: 'BottomSheet',
     title: 'Bottom Sheet',
-    component: ScreenForBottomSheet,
+    component: BlurToolbar,
     // options: {headerShown: false},
   },
 ];

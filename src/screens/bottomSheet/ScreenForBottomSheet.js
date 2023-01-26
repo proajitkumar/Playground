@@ -60,7 +60,7 @@ const styles = StyleSheet.create({
   },
   buttonText: {color: '#fff'},
   modalContent: {
-    backgroundColor: '#fff',
+    backgroundColor: 'cyan',
     height: 550,
     paddingHorizontal: 10,
     paddingTop: 10,

@@ -2,7 +2,11 @@ import {View, StyleSheet} from 'react-native';
 import React, {forwardRef, useImperativeHandle, useRef} from 'react';
 import BottomSheet from 'reanimated-bottom-sheet';
 
-const Header = () => <View style={styles?.header} />;
+const Header = () => (
+  <View style={styles?.header}>
+    <View style={styles?.headerLine} />
+  </View>
+);
 const CommonBottomSheet = forwardRef(({children, snapPoints}, ref) => {
   const sheetRef = useRef(null);
   useImperativeHandle(ref, () => ({
@@ -37,7 +41,14 @@ export default CommonBottomSheet;
 
 const styles = StyleSheet.create({
   header: {
-    top: -5,
+    top: -10,
+    position: 'absolute',
+    width: '100%',
+    height: 10,
+    justifyContent: 'center',
+    borderWidth: 0,
+  },
+  headerLine: {
     alignSelf: 'center',
     backgroundColor: '#ccc',
     width: 60,
