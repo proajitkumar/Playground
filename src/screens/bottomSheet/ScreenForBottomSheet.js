@@ -7,6 +7,7 @@ import {
 } from 'react-native';
 import React, {useRef} from 'react';
 import CommonBottomSheet from './CommonBottomSheet';
+import {TouchableOpacity} from 'react-native';
 
 const ScreenForBottomSheet = () => {
   const sheetRef = useRef(null);
@@ -27,6 +28,14 @@ const ScreenForBottomSheet = () => {
           underlayColor={'red'}>
           <Text style={styles?.buttonText}>Open Bottom Sheet</Text>
         </TouchableHighlight>
+        <TouchableOpacity
+          accessible={true}
+          accessibilityLabel="Tap me!"
+          onPress={() => {}}>
+          <View style={styles.button}>
+            <Text style={styles.buttonText}>Press me!</Text>
+          </View>
+        </TouchableOpacity>
       </View>
       <CommonBottomSheet ref={sheetRef}>
         <View style={styles?.modalContent}>

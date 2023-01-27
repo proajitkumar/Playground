@@ -12,6 +12,8 @@ import Home from '../screens/Home';
 import BottomSheet from '../screens/bottomSheet/BottomSheet';
 import ScreenForBottomSheet from '../screens/bottomSheet/ScreenForBottomSheet';
 import BlurToolbar from '../screens/bottomSheet/BlurToolbar';
+import SQLiteStorage from '../screens/sqiteStorage/SQLiteStorage';
+import AddMemberForm from '../screens/sqiteStorage/AddMemberForm';
 
 const Stack = createSharedElementStackNavigator();
 
@@ -39,8 +41,12 @@ export const screenList = [
   {
     name: 'BottomSheet',
     title: 'Bottom Sheet',
-    component: BlurToolbar,
-    // options: {headerShown: false},
+    component: ScreenForBottomSheet,
+  },
+  {
+    name: 'SQLiteStorage',
+    title: 'SQLite Storage',
+    component: SQLiteStorage,
   },
 ];
 
@@ -67,6 +73,7 @@ const RootNavigation = () => {
             );
           })}
           <Stack.Screen name={'MemberDetails'} component={MemberDetails} />
+          <Stack.Screen name={'AddMemberForm'} component={AddMemberForm} />
         </Stack.Navigator>
       </NavigationContainer>
     </>
