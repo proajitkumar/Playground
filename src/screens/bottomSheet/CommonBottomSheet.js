@@ -29,7 +29,7 @@ const CommonBottomSheet = forwardRef(({children, snapPoints}, ref) => {
         ref={sheetRef}
         initialSnap={0}
         snapPoints={snapPoints}
-        borderRadius={16}
+        // borderRadius={16}
         renderContent={renderContent}
         renderHeader={() => <Header />}
       />
@@ -41,12 +41,15 @@ export default CommonBottomSheet;
 
 const styles = StyleSheet.create({
   header: {
-    top: -10,
-    position: 'absolute',
+    // top: -10,
+    // position: 'absolute',
     width: '100%',
-    height: 10,
+    height: 16,
     justifyContent: 'center',
     borderWidth: 0,
+    backgroundColor: '#fff',
+    borderTopLeftRadius: 16,
+    borderTopRightRadius: 16,
   },
   headerLine: {
     alignSelf: 'center',
