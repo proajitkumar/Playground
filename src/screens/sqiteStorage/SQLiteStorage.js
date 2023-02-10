@@ -50,13 +50,10 @@ const SQLiteStorage = () => {
       const db = await getDBConnection();
       await createTable(db);
       const storedItems = await getMembers(db);
+      console.log({storedItems});
       if (storedItems?.length) {
         setMemberList(storedItems);
       }
-      // else {
-      // }
-      //   await saveMembers(db, initList);
-      //   setMemberList(initList);
     } catch (error) {
       console.log({error});
     }
@@ -73,9 +70,10 @@ const SQLiteStorage = () => {
   };
 
   return (
-    <View>
+    <View style={{flex: 1}}>
       <Button title="Insert Multiple members" onPress={insertMultipleMembers} />
       <FlatList
+        style={{flex: 1}}
         data={memberList}
         // estimatedItemSize={2}
         contentContainerStyle={{paddingBottom: 10}}
