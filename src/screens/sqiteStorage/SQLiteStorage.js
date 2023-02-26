@@ -1,13 +1,8 @@
 import {View, StyleSheet, FlatList, Button} from 'react-native';
 import React, {useCallback, useEffect, useState} from 'react';
-import {FlashList} from '@shopify/flash-list';
 import {Avatar, ListItem} from '@rneui/themed';
-import {
-  createTable,
-  getDBConnection,
-  getMembers,
-  saveMembers,
-} from './db-services';
+import useDatabase from './useDatabase';
+import Database from './database';
 
 const data = [
   {id: 101, value: 'Test 101'},
@@ -41,15 +36,13 @@ const List = ({data, onPress}) => {
   );
 };
 
+const db = Database.getInstance();
 const SQLiteStorage = () => {
   const [memberList, setMemberList] = useState([]);
-  const handleItemPress = () => {};
 
   const getMembersData = useCallback(async () => {
     try {
-      const db = await getDBConnection();
-      await createTable(db);
-      const storedItems = await getMembers(db);
+      const storedItems = await db.getMembers();
       console.log({storedItems});
       if (storedItems?.length) {
         setMemberList(storedItems);
@@ -59,15 +52,15 @@ const SQLiteStorage = () => {
     }
   }, []);
 
-  useEffect(() => {
-    getMembersData();
-  }, [getMembersData]);
-
   const insertMultipleMembers = async () => {
-    const db = await getDBConnection();
-    await saveMembers(db, data);
+    await db.saveMembers(data);
     getMembersData();
   };
+
+  useEffect(() => {
+    db.createTable();
+    console.log({getDb: db});
+  }, []);
 
   return (
     <View style={{flex: 1}}>
@@ -75,12 +68,9 @@ const SQLiteStorage = () => {
       <FlatList
         style={{flex: 1}}
         data={memberList}
-        // estimatedItemSize={2}
         contentContainerStyle={{paddingBottom: 10}}
         showsVerticalScrollIndicator={false}
-        renderItem={({item}) => (
-          <List data={item} onPress={() => handleItemPress(item)} />
-        )}
+        renderItem={({item}) => <List data={item} />}
       />
     </View>
   );
