@@ -13,7 +13,7 @@ const HomeTab = () => {
         tabPress: e => {
           e?.preventDefault();
           // console.log({route});
-          navigation?.navigate('TopTabScreen', {type: route?.params?.type});
+          navigation?.navigate('TopTab', {type: route?.params?.type});
         },
       })}>
       <Tab.Screen
