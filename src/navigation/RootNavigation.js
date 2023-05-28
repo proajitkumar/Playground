@@ -1,5 +1,5 @@
 import {} from 'react-native';
-import React from 'react';
+import React, {useEffect} from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createSharedElementStackNavigator} from 'react-navigation-shared-element';
 import {TransitionPresets} from '@react-navigation/stack';
@@ -14,6 +14,10 @@ import ScreenForBottomSheet from '../screens/bottomSheet/ScreenForBottomSheet';
 import BlurToolbar from '../screens/bottomSheet/BlurToolbar';
 import SQLiteStorage from '../screens/sqiteStorage/SQLiteStorage';
 import AddMemberForm from '../screens/sqiteStorage/AddMemberForm';
+import DrawerInsideStack from '../screens/drawerInsideStack/DrawerInsideStack';
+import SecondScreen from '../screens/drawerInsideStack/SecondScreen';
+import AnimatedAssets from '../screens/animatedAssets/AnimatedAssets';
+import Database from '../screens/sqiteStorage/database';
 
 const Stack = createSharedElementStackNavigator();
 
@@ -48,9 +52,22 @@ export const screenList = [
     title: 'SQLite Storage',
     component: SQLiteStorage,
   },
+  {
+    name: 'DrawerInsideStack',
+    title: 'Drawer Inside Stack',
+    component: DrawerInsideStack,
+    options: {headerShown: false},
+  },
+  {
+    name: 'AnimatedAssets',
+    title: 'Animated Assets',
+    component: AnimatedAssets,
+    options: {headerShown: true},
+  },
 ];
 
 const RootNavigation = () => {
+  const db = Database.getInstance();
   return (
     <>
       <NavigationContainer>
@@ -61,7 +78,7 @@ const RootNavigation = () => {
             headerTitleAlign: 'center',
           }}>
           <Stack.Screen name="Home" component={Home} />
-          {screenList?.map(screen => {
+          {screenList?.reverse()?.map(screen => {
             return (
               <React.Fragment key={screen?.name}>
                 <Stack.Screen
@@ -74,6 +91,7 @@ const RootNavigation = () => {
           })}
           <Stack.Screen name={'MemberDetails'} component={MemberDetails} />
           <Stack.Screen name={'AddMemberForm'} component={AddMemberForm} />
+          <Stack.Screen name={'SecondScreen'} component={SecondScreen} />
         </Stack.Navigator>
       </NavigationContainer>
     </>
